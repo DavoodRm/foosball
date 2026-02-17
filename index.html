@@ -1316,6 +1316,7 @@ let draggingIndex = null;
 let ghostEl = null;
 
 els.queue.addEventListener("touchstart", (e) => {
+  e.preventDefault();
   const li = e.target.closest("li[data-index]");
   if (!li) return;
 
@@ -1361,7 +1362,7 @@ els.queue.addEventListener("touchmove", (e) => {
   }
 });
 
-els.queue.addEventListener("touchend", () => {
+document.addEventListener("touchend", () => {
   if (draggingIndex === null) return;
 
   const items = [...els.queue.querySelectorAll("li")];

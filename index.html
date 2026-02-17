@@ -1310,70 +1310,7 @@ button:active {
   els.btnForfeitA.addEventListener("click", () => forfeitTeam("A"));
   els.btnForfeitB.addEventListener("click", () => forfeitTeam("B"));
 
-  // ===== TOUCH REORDER FOR MOBILE =====
-let touchStartY = 0;
-let draggingIndex = null;
-let ghostEl = null;
 
-els.queue.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  const li = e.target.closest("li[data-index]");
-  if (!li) return;
-
-  draggingIndex = parseInt(li.dataset.index, 10);
-  touchStartY = e.touches[0].clientY;
-
-  ghostEl = li.cloneNode(true);
-  ghostEl.style.position = "fixed";
-  ghostEl.style.left = li.getBoundingClientRect().left + "px";
-  ghostEl.style.width = li.offsetWidth + "px";
-  ghostEl.style.pointerEvents = "none";
-  ghostEl.style.opacity = "0.8";
-  ghostEl.style.zIndex = "9999";
-  ghostEl.classList.add("dragging");
-
-  document.body.appendChild(ghostEl);
-  li.style.visibility = "hidden";
-});
-
-els.queue.addEventListener("touchmove", (e) => {
-  if (draggingIndex === null) return;
-  e.preventDefault();
-
-  const touchY = e.touches[0].clientY;
-  ghostEl.style.top = (touchY - 30) + "px";
-
-  const items = [...els.queue.querySelectorAll("li[data-index]")];
-
-  for (let item of items) {
-    const rect = item.getBoundingClientRect();
-    const middle = rect.top + rect.height / 2;
-
-    if (touchY < middle) {
-      const toIndex = parseInt(item.dataset.index, 10);
-      if (toIndex !== draggingIndex) {
-        const moved = state.queue.splice(draggingIndex, 1)[0];
-        state.queue.splice(toIndex, 0, moved);
-        draggingIndex = toIndex;
-        render();
-      }
-      break;
-    }
-  }
-});
-
-document.addEventListener("touchend", () => {
-  if (draggingIndex === null) return;
-
-  const items = [...els.queue.querySelectorAll("li")];
-  items.forEach(li => li.style.visibility = "");
-
-  if (ghostEl) ghostEl.remove();
-
-  ghostEl = null;
-  draggingIndex = null;
-  render();
-});
 
   // init
   load();

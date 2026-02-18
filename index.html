@@ -463,6 +463,9 @@
   .league-table {
     font-size: 12px;
   }
+  .scoreboard {
+  grid-template-columns: 1fr;
+}
 }
 
 button:active {
@@ -472,41 +475,6 @@ button:active {
 </head>
 <body>
   <main class="wrap">
-    <section class="card span-2" style="--delay:0.02s">
-      <div class="card-head">
-        <span class="pill">کنترل بازی</span>
-        <span class="muted"></span>
-      </div>
-
-      <div class="hr"></div>
-
-      <div class="timerCard">
-        <div class="timerControls">
-          <div>
-            <div class="muted">زمان هر بازی (ثانیه)</div>
-            <input id="seconds" type="number" min="10" step="5" style="max-width:140px" />
-          </div>
-          <div class="timerDisplay">
-            <div class="timerValue" id="timer">90</div>
-            <div class="timerUnit">ثانیه</div>
-          </div>
-        </div>
-        <div class="row center">
-          <button id="btnTimerPause" class="ghost">توقف</button>
-          <button id="btnTimerReset" class="ghost">ریست</button>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <div class="row center">
-        <button id="btnStartMatch" class="primary">شروع بازی بعدی</button>
-        <button id="btnWinA" class="good">برد تیم A</button>
-        <button id="btnDraw" class="warn">مساوی</button>
-        <button id="btnWinB" class="good">برد تیم B</button>
-      </div>
-    </section>
-
     <section class="card span-2" style="--delay:0.08s">
       <div class="card-head">
         <span class="pill">بازی جاری</span>
@@ -514,6 +482,30 @@ button:active {
       </div>
 
       <div class="hr"></div>
+      <div class="timerCard" style="margin-bottom:16px">
+  <div class="timerControls">
+    <div>
+      <div class="muted">زمان هر بازی (ثانیه)</div>
+      <input id="seconds" type="number" min="10" step="5" style="max-width:140px" />
+    </div>
+    <div class="timerDisplay">
+      <div class="timerValue" id="timer">90</div>
+      <div class="timerUnit">ثانیه</div>
+    </div>
+  </div>
+
+  <div class="row center">
+    <button id="btnTimerPause" class="ghost">توقف</button>
+    <button id="btnTimerReset" class="ghost">ریست</button>
+  </div>
+
+  <div class="row center" style="margin-top:10px">
+    <button id="btnStartMatch" class="primary">شروع بازی بعدی</button>
+    <button id="btnWinA" class="good">برد تیم A</button>
+    <button id="btnDraw" class="warn">مساوی</button>
+    <button id="btnWinB" class="good">برد تیم B</button>
+  </div>
+</div>
 
       <div class="scoreboard">
         <div class="teamCard" id="teamCardA">
